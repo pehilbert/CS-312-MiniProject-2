@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail Explorer</title>
+    <title><%= locals.cocktail ? cocktail.name + " Details" : "Cocktail Explorer" %></title>
     <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
 <body>
     <% if (locals.cocktail) { %>
         <div class="details-container">
-            <h1 class="details-title"><%= locals.cocktail.name %></h1>
+            <h1><%= locals.cocktail.name %></h1>
             <% if (locals.cocktail.thumbnail) { %>
                 <img class="details-thumbnail" src="<%= locals.cocktail.thumbnail %>"/>
             <% } %>
-            <p class="details-category"><%= locals.cocktail.alcoholic %>, <%= locals.cocktail.category %></p>
+            <p><%= locals.cocktail.alcoholic %>, <%= locals.cocktail.category %></p>
             <% if (locals.cocktail.iba) { %>
                 <p><b>IBA: <%= locals.cocktail.iba %></b></p>
             <% } %>  
@@ -24,19 +24,22 @@
                     <% }) %>
                 </div>
             <% } %>
-            <h3 class="details-make">Want to make this cocktail?</h3>
-            <h4 class="details-instructions-title">Ingredients</h4>
+            <h3>Want to make this cocktail?</h3>
+            <p>Glass needed: <%= locals.cocktail.glass %></p>
+            <h4>Ingredients</h4>
             <ul>
                 <% locals.cocktail.ingredients.forEach(ingredient => { %>
-                    <li class="details-instructions"><%= ingredient %></li>
+                    <li><%= ingredient %></li>
                 <% }) %>
             </ul>
-            <h4 class="details-instructions-title">Instructions</h4>
-            <p class="details-instructions"><%= locals.cocktail.instructions %></p>
+            <h4>Instructions</h4>
+            <p><%= locals.cocktail.instructions %></p>
             <% if (locals.cocktail.videoLink) { %>
-                <a class="details-video-link" href="<%= locals.cocktail.videoLink %>">Link to tutorial video</a>
+                <a href="<%= locals.cocktail.videoLink %>">Link to tutorial video</a>
             <% } %>
         </div>
+    <% } else if (locals.error) { %>
+        <h2 class="main-title"><%= locals.error %></h2>
     <% } else { %>
         <div class="details-container">
             <h1>Something went wrong.</h1>

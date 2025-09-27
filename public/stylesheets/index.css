@@ -2,7 +2,6 @@ body {
 	font-family: 'Segoe UI', Arial, sans-serif;
 	background: #f7f7f7;
 	margin: 0;
-	padding: 0;
 }
 
 .main-title {
@@ -10,8 +9,9 @@ body {
 }
 
 .search-form {
-	max-width: fit-content;
-	margin: 1rem auto;
+	max-width: 300px;
+	padding: 1rem;
+	margin: 0 auto;
 }
 
 .search-input {
@@ -43,18 +43,24 @@ body {
 	justify-content: center;
 	gap: 1rem;
 	max-width: 90%;
-	margin: 2rem auto;
+	padding: 1rem;
+	margin: 0 auto;
 }
 
 .result-item {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	background: rgb(187, 226, 217);
+	background: #4a6c98;
+	transition: 0.2s;
 	border-radius: 10px;
 	padding: 1rem;
 	width: 175px;
 	height: auto;
+}
+
+.result-item:hover {
+	background: #344b69;
 }
 
 .result-title {
@@ -89,6 +95,7 @@ body {
 	display: flex;
 	gap: 0.25rem;
 	flex-direction: row;
+	flex-wrap: wrap;
 	width: fit-content;
 	height: fit-content;
 }

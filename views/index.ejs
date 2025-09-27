@@ -34,6 +34,8 @@
         <% } else {%>
             <h2 class="main-title">No cocktails found with that search term.</h2>
         <% } %>
+    <% } else if (locals.error) { %>
+        <h2 class="main-title"><%= locals.error %></h2>
     <% } else { %>
         <h2 class="main-title">Search for your favorite cocktails!</h2>
     <% } %>

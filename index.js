@@ -17,6 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', async (req, res) => {
     if (req.query && req.query.searchTerm) {
         const results = await searchCocktailByName(req.query.searchTerm);
+
+        if (results === null) {
+            return res.render("index", {searchTerm: req.query.searchTerm, error: "Something went wrong, please try again."});
+        }
         return res.render("index", {searchTerm: req.query.searchTerm, cocktails: results});
     }
 
@@ -32,7 +36,7 @@ app.get('/details', async (req, res) => {
             return res.render("details", {cocktail: result});
         }
 
-        return res.status(404);
+        return res.render("details", {error: "Cocktail not found. Please go back."});
     }
 
     return res.status(400);

@@ -4,11 +4,16 @@ const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 async function searchCocktailByName(cocktailName) {
     const response = await axios.get(`${BASE_URL}/search.php?s=${cocktailName}`);
-    if (response.data && response.data.drinks) {
-        return response.data.drinks.map(drink => mapCocktailResponseObject(drink));
+
+    if (response.status === 200) {
+        if (response.data && response.data.drinks) {
+            return response.data.drinks.map(drink => mapCocktailResponseObject(drink));
+        }
+
+        return [];
     }
 
-    return [];
+    return null;
 }
 
 async function getCocktailDetailsFromId(cocktailId) {
