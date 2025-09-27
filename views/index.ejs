@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Explorer</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <h1 class="main-title">Explore Cocktails</h1>
+    <form class="search-form" action="/" method="GET">
+        <input
+            value="<%= locals.searchTerm %>"
+            class="search-input"
+            name="searchTerm" 
+            type="text"
+            placeholder="Search"
+        />
+        <button class="search-btn" type="submit">Submit</button>
+    </form>
+    <% if (locals.cocktails !== null) { %>
+        <% if (locals.cocktails.length > 0) { %>
+            <div class="result-container">
+                <% locals.cocktails.forEach((c) => { %>
+                    <div class="result-item">
+                        <a class="result-title" href="/details?id=<%= c.id %>"><b><%= c.name %></b></a>
+
+                        <% if (c.thumbnail) { %>
+                            <img class="result-thumbnail" src="<%= c.thumbnail %>"/>
+                        <% } %>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else {%>
+            <h2>No cocktails found with that search term.</h2>
+        <% } %>
+    <% } else { %>
+        <h2>Search for your favorite cocktails!</h2>
+    <% } %>
+</body>
+</html>

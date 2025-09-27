@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail Explorer</title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <% if (locals.cocktail) { %>
+        <div class="details-container">
+            <h1 class="details-title"><%= locals.cocktail.name %></h1>
+            <% if (locals.cocktail.thumbnail) { %>
+                <img class="details-thumbnail" src="<%= locals.cocktail.thumbnail %>"/>
+            <% } %>
+            <h2 class="details-category"><%= locals.cocktail.category %></h2>
+            <h3 class="details-make">Want to make this cocktail?</h3>
+            <h4 class="details-instructions-title">Ingredients</h4>
+            <ul>
+                <% locals.cocktail.ingredients.forEach(ingredient => { %>
+                    <li class="details-instructions"><%= ingredient %></li>
+                <% }) %>
+            </ul>
+            <h4 class="details-instructions-title">Instructions</h4>
+            <p class="details-instructions"><%= locals.cocktail.instructions %></p>
+        </div>
+    <% } %>
+</body>
+</html>

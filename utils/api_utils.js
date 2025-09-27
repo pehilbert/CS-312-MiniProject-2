@@ -4,9 +4,7 @@ const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1";
 
 async function searchCocktailByName(cocktailName) {
     const response = await axios.get(`${BASE_URL}/search.php?s=${cocktailName}`);
-    console.log("Searching for", cocktailName);
     if (response.data && response.data.drinks) {
-        console.log(response.data);
         return response.data.drinks.map(drink => mapCocktailResponseObject(drink));
     }
 
@@ -29,7 +27,7 @@ function mapCocktailResponseObject(obj) {
 
     while (obj["strIngredient" + ingredientNum.toString()]) {
         ingredients.push(
-            obj["strMeasure" + ingredientNum.toString() || ""] + obj["strIngredient" + ingredientNum.toString()]
+            (obj["strMeasure" + ingredientNum.toString()] || "").trim() + " " + obj["strIngredient" + ingredientNum.toString()].trim()
         );
 
         ingredientNum++;
