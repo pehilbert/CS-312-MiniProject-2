@@ -24,7 +24,7 @@
                 <% locals.cocktails.forEach((c) => { %>
                     <div class="result-item">
                         <a class="result-title" href="/details?id=<%= c.id %>"><b><%= c.name %></b></a>
-
+                        <p class="result-subtitle"><%= c.alcoholic %>, <%= c.category %></p>
                         <% if (c.thumbnail) { %>
                             <img class="result-thumbnail" src="<%= c.thumbnail %>"/>
                         <% } %>
@@ -32,10 +32,10 @@
                 <% }); %>
             </div>
         <% } else {%>
-            <h2>No cocktails found with that search term.</h2>
+            <h2 class="main-title">No cocktails found with that search term.</h2>
         <% } %>
     <% } else { %>
-        <h2>Search for your favorite cocktails!</h2>
+        <h2 class="main-title">Search for your favorite cocktails!</h2>
     <% } %>
 </body>
 </html>

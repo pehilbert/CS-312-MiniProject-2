@@ -13,7 +13,17 @@
             <% if (locals.cocktail.thumbnail) { %>
                 <img class="details-thumbnail" src="<%= locals.cocktail.thumbnail %>"/>
             <% } %>
-            <h2 class="details-category"><%= locals.cocktail.category %></h2>
+            <p class="details-category"><%= locals.cocktail.alcoholic %>, <%= locals.cocktail.category %></p>
+            <% if (locals.cocktail.iba) { %>
+                <p><b>IBA: <%= locals.cocktail.iba %></b></p>
+            <% } %>  
+            <% if (locals.cocktail.tags) { %>
+                <div class="details-tag-container">
+                    <% locals.cocktail.tags.forEach(tag => { %>
+                        <p class="details-tag"><%= tag %></p>
+                    <% }) %>
+                </div>
+            <% } %>
             <h3 class="details-make">Want to make this cocktail?</h3>
             <h4 class="details-instructions-title">Ingredients</h4>
             <ul>
@@ -23,6 +33,13 @@
             </ul>
             <h4 class="details-instructions-title">Instructions</h4>
             <p class="details-instructions"><%= locals.cocktail.instructions %></p>
+            <% if (locals.cocktail.videoLink) { %>
+                <a class="details-video-link" href="<%= locals.cocktail.videoLink %>">Link to tutorial video</a>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="details-container">
+            <h1>Something went wrong.</h1>
         </div>
     <% } %>
 </body>
